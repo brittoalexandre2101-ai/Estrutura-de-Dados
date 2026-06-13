@@ -213,18 +213,18 @@ static Avl_No *encontrar_direita(Avl_No *v)
         return encontrar_direita(v->direita);
 }
 
-int sucessor(Avl_No *no, int x)
+int predecessor(Avl_No *no, int x)
 {
     int candidato = -1;
     while (no != NULL)
     {
-        if (x < no->dado)
+        if (x > no->dado)
         {
             candidato = no->dado;
-            no = no->esquerda;
+            no = no->direita;
         }
         else
-            no = no->direita;
+            no = no->esquerda;
     }
     return candidato;
 }
@@ -246,7 +246,7 @@ int main()
         else if (op == 2)
             remover(t, x);
         else
-            printf("%d\n", sucessor(t->raiz, x));
+            printf("%d\n", predecessor(t->raiz, x));
     }
     return 0;
 }
